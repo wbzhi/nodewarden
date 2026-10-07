@@ -1,0 +1,16 @@
+name: Sync Fork Upstream
+on:
+  schedule:
+    - cron: '0 0 * * *' # UTC每天0点，北京时间早上8点自动同步
+  workflow_dispatch: # 可以手动点按钮触发同步
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync upstream repository
+        uses: wei/sync-fork-action@master
+        with:
+          upstream_repo: /shuaiplus/nodewarden
+          target_branch: main
+          force: true
